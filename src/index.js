@@ -1,3 +1,7 @@
+/*eslint no-undef: "error"*/
+/*eslint-env node*/
+
+require("./models/User");
 // Packages
 const express = require("express");
 const mongoose = require("mongoose");
@@ -11,6 +15,7 @@ const authRoutes = require("./routes/Auth");
 const app = express();
 
 // Use the env variables
+
 const port = process.env.PORT || 3000;
 const serverHost = process.env.SERVER || "";
 const userName = process.env.USERNAME || "";
