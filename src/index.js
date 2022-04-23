@@ -26,13 +26,13 @@ const dbQuery = process.env.DBQUERY || "";
 app.use(bodyParser.json()) // || app.use(express.json())
 
 // Use the declared routes
-app.use(authRoutes);
+app.use("/api/v1/",authRoutes);
 
 // DataBase path
 const db = `${serverHost}://${userName}:${password}@cluster0.kneru.mongodb.net/${dbQuery}`;
 
 // Home page
-app.get("/", (_req, _res) => {
+app.get("/api/v1/", (_req, _res) => {
   _res.send("Hello there");
 });
 
