@@ -1,12 +1,13 @@
+// Packages
 const express = require("express");
 
+// Controllers
+const { singUp } = require("../controllers/Auth");
+
+// Instance the router
 const router = express.Router();
 
-router.post("/auth/singIn", (_req, _res) => {
-    console.log('====================================');
-    console.log(_req.body);
-    console.log('====================================');
-    _res.send('You made a singIn request..')
-});
+// Route
+router.post("/auth/singUp", singUp);
 
-module.exports = router; 
+module.exports = router;
