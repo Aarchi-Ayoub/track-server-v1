@@ -45,4 +45,22 @@ userSchema.pre("save", function (next) {
   });
 });
 
+/**
+ * Compare the pwd
+ */
+userSchema.methods.comparePassword = function (password) {
+  // Get ref of the user
+  const user = this;
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        return reject(err);
+      }
+      if (!isMatch) {
+        return reject(false);
+      }
+      return resolve(true);
+    });
+  });
+};
 mongoose.model("User", userSchema);
