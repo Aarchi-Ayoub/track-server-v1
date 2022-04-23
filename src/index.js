@@ -1,12 +1,15 @@
 /*eslint no-undef: "error"*/
 /*eslint-env node*/
 
-require("./models/User");
 // Packages
 const express = require("express");
 const mongoose = require("mongoose");
+const expressValidator = require('express-validator');
 const bodyParser = require("body-parser");
 require("dotenv").config();
+
+// Models
+require("./models/User");
 
 // App routes
 const authRoutes = require("./routes/Auth");
@@ -15,7 +18,6 @@ const authRoutes = require("./routes/Auth");
 const app = express();
 
 // Use the env variables
-
 const port = process.env.PORT || 3000;
 const serverHost = process.env.SERVER || "";
 const userName = process.env.USERNAME || "";
@@ -24,6 +26,9 @@ const dbQuery = process.env.DBQUERY || "";
 
 // Convert the request body to Json form
 app.use(bodyParser.json()) // || app.use(express.json())
+
+// Use the Express Validator
+app.use(expressValidator());
 
 // Use the declared routes
 app.use("/api/v1/",authRoutes);
