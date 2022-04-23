@@ -1,7 +1,11 @@
 // Packages
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 require("dotenv").config();
+
+// App routes
+const authRoutes = require("./routes/Auth");
 
 // App config
 const app = express();
@@ -13,8 +17,15 @@ const userName = process.env.USERNAME || "";
 const password = process.env.PASSWORD || "";
 const dbQuery = process.env.DBQUERY || "";
 
+// Convert the request body to Json form
+app.use(bodyParser.json()) // || app.use(express.json())
+
+// Use the declared routes
+app.use(authRoutes);
+
 // DataBase path
 const db = `${serverHost}://${userName}:${password}@cluster0.kneru.mongodb.net/${dbQuery}`;
+
 // Home page
 app.get("/", (_req, _res) => {
   _res.send("Hello there");
