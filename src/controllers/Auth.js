@@ -1,5 +1,6 @@
 // Packages
 const mongoose = require("mongoose");
+const jwt = require('jsonwebtoken');
 
 // Instance the user modal
 const User = mongoose.model("User");
@@ -21,13 +22,15 @@ exports.singUp = async (_req, _res) => {
         });
       } else {
         const { email, password, _id } = res;
+        // eslint-disable-next-line no-undef
+        const token = jwt.sign({userId: _id}, process.env.MYSECRETKEY )
         let data = {
           email,
           password,
           id: _id,
         };
         _res.status(200);
-        _res.send({ statusCode: 200, success: true, data });
+        _res.send({ statusCode: 200, success: true, data , token});
       }
     });
   } catch (error) {
