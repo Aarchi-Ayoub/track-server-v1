@@ -9,10 +9,12 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 // Models
-require("./models/User");
+require("./src/models/User");
+require("./src/models/Track");
+
 
 // App routes
-const authRoutes = require("./routes/Auth");
+const authRoutes = require("./src/routes/Auth");
 
 // App config
 const app = express();
