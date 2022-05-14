@@ -15,6 +15,8 @@ require("./src/models/Track");
 
 // App routes
 const authRoutes = require("./src/routes/Auth");
+const tracksRoutes = require("./src/routes/Track");
+
 
 // App config
 const app = express();
@@ -34,6 +36,8 @@ app.use(expressValidator());
 
 // Use the declared routes
 app.use("/api/v1/",authRoutes);
+app.use("/api/v1/",tracksRoutes);
+
 
 // DataBase path
 const db = `${serverHost}://${userName}:${password}@cluster0.kneru.mongodb.net/${dbQuery}`;
